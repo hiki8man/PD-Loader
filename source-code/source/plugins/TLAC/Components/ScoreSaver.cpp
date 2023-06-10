@@ -68,15 +68,15 @@ namespace TLAC::Components
 
 	bool ScoreSaver::checkExistingScoreValid(int pv, int difficulty, int isEx)
 	{
-		WCHAR keyBase[32]; // needs to be big enough to store pv.999.diff.3.ex
+		WCHAR keyBase[34]; // needs to be big enough to store pv.4999.diff.3.ex
 		WCHAR key[32]; // needs to be big enough to store pv.999.diff.3.alltimemodifiers
 
 		const WCHAR section[] = L"scores";
 
 		if (isEx == 0)
-			swprintf(keyBase, 32, L"pv.%03d.diff.%01d", pv, difficulty);
+			swprintf(keyBase, 34, L"pv.%03d.diff.%01d", pv, difficulty);
 		else
-			swprintf(keyBase, 32, L"pv.%03d.diff.%01d.ex", pv, difficulty);
+			swprintf(keyBase, 34, L"pv.%03d.diff.%01d.ex", pv, difficulty);
 
 
 		swprintf(key, 32, L"%ls.%ls", keyBase, L"score");
@@ -161,16 +161,16 @@ namespace TLAC::Components
 		MultiByteToWideChar(CP_UTF8, 0, utf8song, -1, songName, 256);
 
 
-		WCHAR keyBase[32]; // needs to be big enough to store pv.999.diff.3.ex
+		WCHAR keyBase[34]; // needs to be big enough to store pv.4999.diff.3.ex
 		WCHAR key[32]; // needs to be big enough to store pv.999.diff.3.alltimemodifiers
 		WCHAR val[32]; // needs to be big enough to store five <=four digit ints (with comma separators)
 
 		const WCHAR section[] = L"scores";
 
 		if (pvDifficultyIsEx == 0)
-			swprintf(keyBase, 32, L"pv.%03d.diff.%01d", pvNum, pvDifficulty);
+			swprintf(keyBase, 34, L"pv.%03d.diff.%01d", pvNum, pvDifficulty);
 		else
-			swprintf(keyBase, 32, L"pv.%03d.diff.%01d.ex", pvNum, pvDifficulty);
+			swprintf(keyBase, 34, L"pv.%03d.diff.%01d.ex", pvNum, pvDifficulty);
 
 		swprintf(key, 32, L"%ls.%ls", keyBase, L"score");
 		int oldScore = GetPrivateProfileIntW(section, key, 0, configPath);
@@ -402,7 +402,7 @@ namespace TLAC::Components
 
 	ScoreSaver::DivaScore* ScoreSaver::GetCachedScore(int pvNum, int diff, int exDiff)
 	{
-		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum > 999 || diff > 3 || exDiff > 1)
+		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 4999 || diff > 3 || exDiff > 1)
 			return nullptr;
 
 		for (DivaScore &scoreinfo : ScoreCache[diff])
@@ -415,19 +415,19 @@ namespace TLAC::Components
 	}
 	void ScoreSaver::UpdateSingleScoreCacheEntry(int pvNum, int diff, int exDiff, bool doDefaultsReset)
 	{
-		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum > 999 || diff > 3 || exDiff > 1)
+		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 4999 || diff > 3 || exDiff > 1)
 			return;
 
 
-		WCHAR keyBase[32]; // needs to be big enough to store pv.999.diff.3.ex
+		WCHAR keyBase[34]; // needs to be big enough to store pv.4999.diff.3.ex
 		WCHAR key[32]; // needs to be big enough to store pv.999.diff.3.alltimemodifiers
 
 		const WCHAR section[] = L"scores";
 
 		if (exDiff == 0)
-			swprintf(keyBase, 32, L"pv.%03d.diff.%01d", pvNum, diff);
+			swprintf(keyBase, 34, L"pv.%03d.diff.%01d", pvNum, diff);
 		else
-			swprintf(keyBase, 32, L"pv.%03d.diff.%01d.ex", pvNum, diff);
+			swprintf(keyBase, 34, L"pv.%03d.diff.%01d.ex", pvNum, diff);
 
 		
 		if (checkExistingScoreValid(pvNum, diff, exDiff))
@@ -499,19 +499,19 @@ namespace TLAC::Components
 
 	void ScoreSaver::UpdateSingleScoreCacheRivalEntry(int pvNum, int diff, int exDiff)
 	{
-		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum > 999 || diff > 3 || exDiff > 1)
+		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 4999 || diff > 3 || exDiff > 1)
 			return;
 
 
-		WCHAR keyBase[32]; // needs to be big enough to store pv.999.diff.3.ex
+		WCHAR keyBase[34]; // needs to be big enough to store pv.4999.diff.3.ex
 		WCHAR key[32]; // needs to be big enough to store pv.999.diff.3.alltimemodifiers
 
 		const WCHAR section[] = L"scores";
 
 		if (exDiff == 0)
-			swprintf(keyBase, 32, L"pv.%03d.diff.%01d", pvNum, diff);
+			swprintf(keyBase, 34, L"pv.%03d.diff.%01d", pvNum, diff);
 		else
-			swprintf(keyBase, 32, L"pv.%03d.diff.%01d.ex", pvNum, diff);
+			swprintf(keyBase, 34, L"pv.%03d.diff.%01d.ex", pvNum, diff);
 
 
 		swprintf(key, 32, L"%ls.%ls", keyBase, L"score");
@@ -557,15 +557,15 @@ namespace TLAC::Components
 
 	void ScoreSaver::UpdateSingleScoreCacheModulesEntry(int pvNum, int diff, int exDiff)
 	{
-		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum > 999 || diff > 3 || exDiff > 1)
+		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 4999 || diff > 3 || exDiff > 1)
 			return;
 
 
-		WCHAR keyBase[32]; // needs to be big enough to store pv.999
+		WCHAR keyBase[34]; // needs to be big enough to store pv.4999
 		WCHAR key[32]; // needs to be big enough to store pv.999.module5
 
 		const WCHAR section[] = L"modules";
-		swprintf(keyBase, 32, L"pv.%03d", pvNum);
+		swprintf(keyBase, 34, L"pv.%03d", pvNum);
 		for (int i = 0; i < 6; ++i)
 		{
 			swprintf(key, 32, L"%ls.module%d", keyBase, i);
@@ -591,13 +591,13 @@ namespace TLAC::Components
 
 	void ScoreSaver::ModuleCheck(int pvNum, int diff, int exDiff)
 	{
-		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum > 999 || diff > 3 || exDiff > 1)
+		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 4999 || diff > 3 || exDiff > 1)
 			return;
 
-		WCHAR keyBase[32]; // needs to be big enough to store pv.999
+		WCHAR keyBase[34]; // needs to be big enough to store pv.999
 		WCHAR key[32]; // needs to be big enough to store pv.999.module5
 		const WCHAR section[] = L"modules";
-		swprintf(keyBase, 32, L"pv.%03d", pvNum);
+		swprintf(keyBase, 34, L"pv.%03d", pvNum);
 		DivaScore* cachedScore = GetCachedScore(pvNum, diff, exDiff);
 		for (int i = 0; i < 6; ++i)
 		{
@@ -616,15 +616,15 @@ namespace TLAC::Components
 
 	void ScoreSaver::UpdateSingleScoreCacheSkinsEntry(int pvNum, int diff, int exDiff)
 	{
-		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum > 999 || diff > 3 || exDiff > 1)
+		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 4999 || diff > 3 || exDiff > 1)
 			return;
 
 
-		WCHAR keyBase[32]; // needs to be big enough to store pv.999
+		WCHAR keyBase[34]; // needs to be big enough to store pv.999
 		WCHAR key[32]; // needs to be big enough to store pv.999.module5
 
 		const WCHAR section[] = L"skins";
-		swprintf(keyBase, 32, L"pv.%03d", pvNum);
+		swprintf(keyBase, 34, L"pv.%03d", pvNum);
 		swprintf(key, 32, L"%ls.skin", keyBase);
 		int INISkin = GetPrivateProfileIntW(section, key, 0, skins_configPath);
 		if (INISkin > -1)
@@ -644,15 +644,15 @@ namespace TLAC::Components
 
 	void ScoreSaver::UpdateSingleScoreCacheSFXEntry(int pvNum, int diff, int exDiff)
 	{
-		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum > 999 || diff > 3 || exDiff > 1)
+		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 4999 || diff > 3 || exDiff > 1)
 			return;
 
 
-		WCHAR keyBase[32]; // needs to be big enough to store pv.999
+		WCHAR keyBase[34]; // needs to be big enough to store pv.999
 		WCHAR key[32]; // needs to be big enough to store pv.999.module5
 
 		const WCHAR section[] = L"SFX";
-		swprintf(keyBase, 32, L"pv.%03d", pvNum);
+		swprintf(keyBase, 34, L"pv.%03d", pvNum);
 		swprintf(key, 32, L"%ls.btn", keyBase);
 		int INIBtn = GetPrivateProfileIntW(section, key, 0, sfx_configPath);
 		if (INIBtn > 0)
@@ -668,7 +668,7 @@ namespace TLAC::Components
 				cachedScore->per_btn_se_equip = INIBtn;
 			}
 		}
-		swprintf(keyBase, 32, L"pv.%03d", pvNum);
+		swprintf(keyBase, 34, L"pv.%03d", pvNum);
 		swprintf(key, 32, L"%ls.chain", keyBase);
 		int INIChain = GetPrivateProfileIntW(section, key, 0, sfx_configPath);
 		if (INIChain > 0)
@@ -684,7 +684,7 @@ namespace TLAC::Components
 				cachedScore->per_chainslide_se_equip = INIChain;
 			}
 		}
-		swprintf(keyBase, 32, L"pv.%03d", pvNum);
+		swprintf(keyBase, 34, L"pv.%03d", pvNum);
 		swprintf(key, 32, L"%ls.slide", keyBase);
 		int INISlide = GetPrivateProfileIntW(section, key, 0, sfx_configPath);
 		if (INISlide > 0)
@@ -700,7 +700,7 @@ namespace TLAC::Components
 				cachedScore->per_slide_se_equip = INISlide;
 			}
 		}
-		swprintf(keyBase, 32, L"pv.%03d", pvNum);
+		swprintf(keyBase, 34, L"pv.%03d", pvNum);
 		swprintf(key, 32, L"%ls.touch", keyBase);
 		int INITouch = GetPrivateProfileIntW(section, key, 0, sfx_configPath);
 		if (INITouch > 0)
@@ -727,7 +727,7 @@ namespace TLAC::Components
 
 	void ScoreSaver::UpdateScoreCache()
 	{
-		for (int pvNum = 0; pvNum < 1000; pvNum++)
+		for (int pvNum = 0; pvNum < 5000; pvNum++)
 		{
 			for (int diff = 0; diff < 4; diff++)
 			{
