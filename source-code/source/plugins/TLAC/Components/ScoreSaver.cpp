@@ -415,7 +415,7 @@ namespace TLAC::Components
 	}
 	void ScoreSaver::UpdateSingleScoreCacheEntry(int pvNum, int diff, int exDiff, bool doDefaultsReset)
 	{
-		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 4999 || diff > 3 || exDiff > 1)
+		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 1999 || diff > 3 || exDiff > 1)
 			return;
 
 
@@ -499,7 +499,7 @@ namespace TLAC::Components
 
 	void ScoreSaver::UpdateSingleScoreCacheRivalEntry(int pvNum, int diff, int exDiff)
 	{
-		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 4999 || diff > 3 || exDiff > 1)
+		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 1999 || diff > 3 || exDiff > 1)
 			return;
 
 
@@ -557,7 +557,7 @@ namespace TLAC::Components
 
 	void ScoreSaver::UpdateSingleScoreCacheModulesEntry(int pvNum, int diff, int exDiff)
 	{
-		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 4999 || diff > 3 || exDiff > 1)
+		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 1999 || diff > 3 || exDiff > 1)
 			return;
 
 
@@ -591,7 +591,7 @@ namespace TLAC::Components
 
 	void ScoreSaver::ModuleCheck(int pvNum, int diff, int exDiff)
 	{
-		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 4999 || diff > 3 || exDiff > 1)
+		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 1999 || diff > 3 || exDiff > 1)
 			return;
 
 		WCHAR keyBase[34]; // needs to be big enough to store pv.999
@@ -616,7 +616,7 @@ namespace TLAC::Components
 
 	void ScoreSaver::UpdateSingleScoreCacheSkinsEntry(int pvNum, int diff, int exDiff)
 	{
-		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 4999 || diff > 3 || exDiff > 1)
+		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 1999 || diff > 3 || exDiff > 1)
 			return;
 
 
@@ -644,7 +644,7 @@ namespace TLAC::Components
 
 	void ScoreSaver::UpdateSingleScoreCacheSFXEntry(int pvNum, int diff, int exDiff)
 	{
-		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 4999 || diff > 3 || exDiff > 1)
+		if (pvNum < 0 || diff < 0 || exDiff < 0 || pvNum == 999 || pvNum > 1999 || diff > 3 || exDiff > 1)
 			return;
 
 
@@ -727,7 +727,7 @@ namespace TLAC::Components
 
 	void ScoreSaver::UpdateScoreCache()
 	{
-		for (int pvNum = 0; pvNum < 5000; pvNum++)
+		for (int pvNum = 0; pvNum < 2000; pvNum++)
 		{
 			for (int diff = 0; diff < 4; diff++)
 			{
